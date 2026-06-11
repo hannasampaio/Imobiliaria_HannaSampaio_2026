@@ -1,0 +1,70 @@
+@extends('layouts.app')
+
+@section('content')
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Clientes</h1>
+
+    <a href="{{ route('clientes.create') }}" class="btn btn-outline-primary">
+        Novo Cliente
+    </a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>NIF</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @forelse($clientes as $cliente)
+            <tr>
+                <td>{{ $cliente->id }}</td>
+                <td>{{ $cliente->nome }}</td>
+                <td>{{ $cliente->email }}</td>
+                <td>{{ $cliente->telefone }}</td>
+                <td>{{ $cliente->nif }}</td>
+
+                <td>
+                    <a href="{{ route('clientes.show', $cliente) }}"
+                       class="btn btn-outline-info btn-sm">
+                        Ver
+                    </a>
+
+                    <a href="{{ route('clientes.edit', $cliente) }}"
+                       class="btn btn-outline-warning btn-sm">
+                        Editar
+                    </a>
+
+                    <form action="{{ route('clientes.destroy', $cliente) }}"
+                          method="POST"
+                          style="display:inline">
+
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit"
+                                class="btn btn-outline-danger btn-sm">
+                            Apagar
+                        </button>
+
+                    </form>
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="6" class="text-center">
+                    Nenhum cliente encontrado.
+                </td>
+            </tr>
+        @endforelse
+    </tbody>
+</table>
+
+@endsection
