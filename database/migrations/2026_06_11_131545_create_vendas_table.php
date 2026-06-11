@@ -13,6 +13,23 @@ return new class extends Migration
     {
         Schema::create('vendas', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('cliente_id')
+                ->constrained()
+                ->cascadeOnDelete();
+
+            $table->foreignId('apartamento_id')
+                ->unique()
+                ->constrained()
+                ->cascadeOnDelete();
+
+            $table->date('data_venda');
+
+            $table->decimal('valor_venda', 12, 2);
+
+            $table->text('observacoes')
+                ->nullable();
+
             $table->timestamps();
         });
     }

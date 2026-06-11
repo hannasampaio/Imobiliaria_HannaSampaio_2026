@@ -13,6 +13,21 @@ return new class extends Migration
     {
         Schema::create('apartamentos', function (Blueprint $table) {
             $table->id();
+
+            $table->string('referencia')->unique();
+            $table->string('tipologia');
+            $table->string('morada');
+
+            $table->decimal('area', 8, 2);
+            $table->decimal('preco', 12, 2);
+
+            $table->string('fotografia')->nullable();
+
+            $table->enum('estado', [
+                'Disponivel',
+                'Vendido'
+            ])->default('Disponivel');
+
             $table->timestamps();
         });
     }
