@@ -7,9 +7,35 @@ use Illuminate\Http\Request;
 
 class ApartamentoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $apartamentos = Apartamento::orderBy('id', 'desc')->get();
+        $query = Apartamento::query();
+
+        if ($request->filled('pesquisa')) {
+            $pesquisa = $request->pesquisa;
+
+            $query->where(function ($q) use ($pesquisa) {
+                $q->where('referencia', 'like', '%' . $pesquisa . '%')
+                    ->orWhere('tipologia', 'like', '%' . $pesquisa . '%')
+                    ->orWhere('morada', 'like', '%' . $pesquisa . '%');
+            });
+        }
+
+        $ordenarPor = $request->get('ordenar_por', 'id');
+        $direcao = $request->get('direcao', 'desc');
+
+        $camposPermitidos = ['id', 'tipologia', 'area', 'preco'];
+        $direcoesPermitidas = ['asc', 'desc'];
+
+        if (!in_array($ordenarPor, $camposPermitidos)) {
+            $ordenarPor = 'id';
+        }
+
+        if (!in_array($direcao, $direcoesPermitidas)) {
+            $direcao = 'desc';
+        }
+
+        $apartamentos = $query->orderBy($ordenarPor, $direcao)->get();
 
         return view('apartamentos.index', compact('apartamentos'));
     }
