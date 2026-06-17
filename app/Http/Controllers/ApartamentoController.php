@@ -4,12 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Apartamento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApartamentoController extends Controller
 {
+    private const ACESSO_NEGADO = 'Acesso não autorizado.';
     public function index(Request $request)
     {
         $query = Apartamento::query();
+
+        // Se for cliente, mostra apenas apartamentos disponíveis
+        if (Auth::user()->role === 'cliente') {
+            $query->where('estado', 'Disponivel');
+        }
 
         if ($request->filled('pesquisa')) {
             $pesquisa = $request->pesquisa;
@@ -35,18 +42,29 @@ class ApartamentoController extends Controller
             $direcao = 'desc';
         }
 
-        $apartamentos = $query->orderBy($ordenarPor, $direcao)->get();
+        $apartamentos = $query
+            ->orderBy($ordenarPor, $direcao)
+            ->paginate(8)
+            ->withQueryString();
 
         return view('apartamentos.index', compact('apartamentos'));
     }
 
     public function create()
     {
+        if (Auth::user()->role === 'cliente') {
+            abort(403, self::ACESSO_NEGADO);
+        }
+
         return view('apartamentos.create');
     }
 
     public function store(Request $request)
     {
+        if (Auth::user()->role === 'cliente') {
+            abort(403, self::ACESSO_NEGADO);
+        }
+
         $request->validate([
             'referencia' => 'required|string|max:100|unique:apartamentos,referencia',
             'tipologia' => 'required|string|max:20',
@@ -72,16 +90,28 @@ class ApartamentoController extends Controller
 
     public function show(Apartamento $apartamento)
     {
+        if (Auth::user()->role === 'cliente' && $apartamento->estado !== 'Disponivel') {
+            abort(403, self::ACESSO_NEGADO);
+        }
+
         return view('apartamentos.show', compact('apartamento'));
     }
 
     public function edit(Apartamento $apartamento)
     {
+        if (Auth::user()->role === 'cliente') {
+            abort(403, self::ACESSO_NEGADO);
+        }
+
         return view('apartamentos.edit', compact('apartamento'));
     }
 
     public function update(Request $request, Apartamento $apartamento)
     {
+        if (Auth::user()->role === 'cliente') {
+            abort(403, self::ACESSO_NEGADO);
+        }
+
         $request->validate([
             'referencia' => 'required|string|max:100|unique:apartamentos,referencia,' . $apartamento->id,
             'tipologia' => 'required|string|max:20',
@@ -107,6 +137,10 @@ class ApartamentoController extends Controller
 
     public function destroy(Apartamento $apartamento)
     {
+        if (Auth::user()->role === 'cliente') {
+            abort(403, self::ACESSO_NEGADO);
+        }
+
         $apartamento->delete();
 
         return redirect()

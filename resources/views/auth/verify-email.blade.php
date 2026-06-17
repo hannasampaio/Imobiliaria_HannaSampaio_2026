@@ -1,31 +1,98 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+
+```
+<div style="
+    width: 460px;
+    max-width: 95%;
+    background: rgba(255,255,255,0.96);
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.28);
+">
+
+    <div class="text-center mb-4">
+
+        <img
+            src="{{ asset('images/logo.png') }}"
+            alt="Hanna Imobiliária"
+            style="
+                width: 160px;
+                max-width:100%;
+                display:block;
+                margin:0 auto 18px auto;
+            ">
+
+        <h2 class="text-2xl font-bold" style="color:#0b1f3a;">
+            Confirmar Email
+        </h2>
+
+        <p class="text-sm text-gray-600 mt-2">
+            Falta apenas um passo para concluir o registo.
+        </p>
+
+    </div>
+
+    <div class="mb-4 text-sm text-gray-600 text-center">
+
+        Verifique a sua caixa de correio eletrónico e clique no link de confirmação enviado pela Hanna Imobiliária.
+
+        <br><br>
+
+        Caso não tenha recebido o email, poderá solicitar um novo envio.
+
     </div>
 
     @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+
+        <div class="alert alert-success text-center mb-4">
+
+            <i class="bi bi-check-circle-fill me-2"></i>
+
+            Foi enviado um novo email de verificação.
+
         </div>
+
     @endif
 
-    <div class="mt-4 flex items-center justify-between">
-        <form method="POST" action="{{ route('verification.send') }}">
+    <div class="d-grid gap-3">
+
+        <form method="POST"
+              action="{{ route('verification.send') }}">
             @csrf
 
-            <div>
-                <x-primary-button>
-                    {{ __('Resend Verification Email') }}
-                </x-primary-button>
-            </div>
-        </form>
+            <button
+                type="submit"
+                class="w-full py-3 rounded-lg text-white font-semibold d-flex justify-content-center align-items-center gap-2"
+                style="background:#0b1f3a;">
 
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
+                <i class="bi bi-envelope-fill"
+                   style="color:#c9a227;"></i>
 
-            <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                {{ __('Log Out') }}
+                Reenviar Email
+
             </button>
+
         </form>
+
+        <form method="POST"
+              action="{{ route('logout') }}">
+            @csrf
+
+            <button
+                type="submit"
+                class="btn btn-outline-secondary w-100">
+
+                <i class="bi bi-box-arrow-right me-2"></i>
+
+                Terminar Sessão
+
+            </button>
+
+        </form>
+
     </div>
+
+</div>
+
+
 </x-guest-layout>

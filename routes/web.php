@@ -8,10 +8,20 @@ use App\Models\Cliente;
 use App\Models\Apartamento;
 use App\Models\Venda;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::get('/', function () {
+    Route::get('/dashboard', function () {
+
+        if (Auth::check() && Auth::user()->role === 'cliente') {
+            return redirect()->route('apartamentos.index');
+        }
+
         $totalClientes = Cliente::count();
         $totalApartamentos = Apartamento::count();
         $totalVendas = Venda::count();
@@ -27,7 +37,30 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->take(3)
             ->get();
 
-        return view('welcome', compact(
+        $faturamentoTotal = Venda::sum('valor_venda');
+
+        $vendasRecentes = Venda::with(['cliente', 'apartamento'])
+            ->latest()
+            ->take(5)
+            ->get();
+
+        $vendasPorMes = collect(range(1, now()->daysInMonth))->map(function ($dia) {
+            return [
+                'mes' => $dia,
+
+                'total' => Venda::whereDay('data_venda', $dia)
+                    ->whereMonth('data_venda', now()->month)
+                    ->whereYear('data_venda', now()->year)
+                    ->count(),
+
+                'receita' => Venda::whereDay('data_venda', $dia)
+                    ->whereMonth('data_venda', now()->month)
+                    ->whereYear('data_venda', now()->year)
+                    ->sum('valor_venda'),
+            ];
+        });
+
+        return view('dashboard', compact(
             'totalClientes',
             'totalApartamentos',
             'totalVendas',
@@ -36,7 +69,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
             'precoMedio',
             'precoMaximo',
             'precoMinimo',
-            'apartamentosDestaque'
+            'apartamentosDestaque',
+            'faturamentoTotal',
+            'vendasRecentes',
+            'vendasPorMes'
         ));
     })->name('dashboard');
 
@@ -51,4 +87,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -1,273 +1,223 @@
-@extends('layouts.app')
+<x-guest-layout>
 
-@section('content')
-    <div class="p-5 mb-5 rounded-4 text-white" style="background: linear-gradient(135deg, #0b1f3a, #163b63);">
-        <div class="row align-items-center">
+    <style>
+        :root {
+            --navy:  #0B1F3A;
+            --gold:  #C9922A;
+            --gold-light: #E8B04B;
+            --card-bg: rgba(255, 255, 255, 0.96);
+            --text-muted: #6B7280;
+            --radius: 20px;
+        }
 
-            <div class="col-md-7">
-                <h1 class="display-5 fw-bold">
-                    Hanna Imobiliária
-                </h1>
+        .home-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 40px 36px 32px;
+            width: 100%;
+            max-width: 460px;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+            text-align: center;
+        }
 
-                <p class="lead mt-3">
-                    Sistema de Gestão de Clientes, Apartamentos e Vendas numa única plataforma.
-                </p>
+        .home-card .logo-img {
+            width: 180px;
+            display:block;
+            margin:0 auto 6px;
+        }
 
-                <div class="mt-4">
-                    <a href="{{ route('apartamentos.index') }}" class="btn btn-gold btn-lg me-2">
-                        Gerir Apartamentos
-                    </a>
+        .home-card .brand-name {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: var(--navy);
+            line-height: 1;
+            margin: 0;
+        }
 
-                    <a href="{{ route('clientes.index') }}" class="btn btn-outline-light btn-lg">
-                        Gerir Clientes
-                    </a>
-                </div>
+        .home-card .brand-sub {
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin: 2px 0 0;
+        }
+
+        .home-card .brand-tagline {
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin: 4px 0 0;
+        }
+
+        .home-card .divider {
+            width: 48px;
+            height: 2px;
+            background: var(--gold);
+            border: none;
+            margin: 8px auto 8px;
+        }
+
+        .home-card .card-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--navy);
+            margin: 0 0 4px;
+            line-height: 1.3;
+        }
+
+        .home-card .card-title span {
+            color: var(--gold);
+        }
+
+        .home-card .card-desc {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.55;
+            margin: 0 0 24px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .feature-card {
+            background: #F8F8FA;
+            border-radius: 12px;
+            padding: 18px 10px 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #EBEBEB;
+        }
+
+        .feature-card i {
+            font-size: 26px;
+            color: var(--gold);
+        }
+
+        .feature-card span {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .btn-primary-conta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px;
+            background: var(--navy);
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+            margin-bottom: 12px;
+        }
+
+        .btn-primary-conta:hover {
+            background: #142d52;
+            color: #fff;
+        }
+
+        .btn-outline-conta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            color: black;
+            font-size: 15px;
+            font-weight: 700;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+            margin-bottom: 20px;
+        }
+
+        .btn-outline-conta:hover {
+            background: var(--gold);
+            color: #fff;
+        }
+
+        .security-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .security-note i {
+            color: var(--gold);
+            font-size: 14px;
+        }
+    </style>
+
+    <div class="home-card">
+
+        <img src="{{ asset('images/logo.png') }}" alt="conta Imobiliária" class="logo-img">
+
+        <hr class="divider">
+
+        <h1 class="card-title">
+            Sistema de Gestão<br>
+            <span>Imobiliária</span>
+        </h1>
+        <p class="card-desc">
+            Gerencie clientes, apartamentos e vendas<br>
+            numa única plataforma completa.
+        </p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="bi bi-people-fill"></i>
+                <span>Clientes</span>
+                <hr class="divider">
             </div>
-
-            <div class="col-md-5 text-center mt-4 mt-md-0">
-                <div class="bg-white text-dark rounded-4 p-4 shadow">
-                    <h5 class="text-muted">
-                        Resumo do Sistema
-                    </h5>
-
-                    <h2 class="fw-bold">
-                        {{ $totalApartamentos }}
-                    </h2>
-
-                    <p class="mb-0">
-                        apartamentos registados
-                    </p>
-                </div>
+            <div class="feature-card">
+                <i class="bi bi-buildings-fill"></i>
+                <span>Apartamentos</span>
+                <hr class="divider">
             </div>
-
-        </div>
-    </div>
-
-    <div class="row mb-5">
-
-        <div class="col-md-4 mb-3">
-            <div class="card border-0 shadow h-100 rounded-4">
-                <div class="card-body">
-                    <p class="text-muted mb-1">Clientes</p>
-
-                    <h2 class="fw-bold" style="color:#0b1f3a;">
-                        {{ $totalClientes }}
-                    </h2>
-
-                    <p class="mb-0">
-                        clientes registados no sistema
-                    </p>
-                </div>
+            <div class="feature-card">
+                <i class="bi bi-currency-dollar"></i>
+                <span>Vendas</span>
+                <hr class="divider">
             </div>
         </div>
 
-        <div class="col-md-4 mb-3">
-            <div class="card border-0 shadow h-100 rounded-4">
-                <div class="card-body">
-                    <p class="text-muted mb-1">Apartamentos</p>
-
-                    <h2 class="fw-bold" style="color:#0b1f3a;">
-                        {{ $totalApartamentos }}
-                    </h2>
-
-                    <p class="mb-0">
-                        imóveis disponíveis e vendidos
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 mb-3">
-            <div class="card border-0 shadow h-100 rounded-4">
-                <div class="card-body">
-                    <p class="text-muted mb-1">Vendas</p>
-
-                    <h2 class="fw-bold" style="color:#0b1f3a;">
-                        {{ $totalVendas }}
-                    </h2>
-
-                    <p class="mb-0">
-                        vendas registadas com sucesso
-                    </p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h2 class="fw-bold mb-1">
-                Últimos Apartamentos Registados
-            </h2>
-
-            <p class="text-muted mb-0">
-                Registos recentes disponíveis no sistema.
-            </p>
-        </div>
-
-        <a href="{{ route('apartamentos.index') }}" class="btn btn-outline-primary">
-            Ver Todos
+        <a href="{{ route('login') }}" class="btn-primary-conta">
+            <i class="bi bi-box-arrow-in-right" style="color:#c9a227;"></i>
+            Entrar no Sistema
         </a>
+
+        <a href="{{ route('register') }}" class="btn-outline-conta">
+            <i class="bi bi-person-plus-fill" style="color:#c9a227;"></i>
+            Criar Conta
+        </a>
+
+        <p class="security-note">
+            <i class="bi bi-shield-check"></i>
+            Seguro, moderno e feito <strong>para você.</strong>
+        </p>
+
     </div>
 
-    <div class="row">
-
-        @forelse($apartamentosDestaque as $apartamento)
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow border-0 rounded-4 overflow-hidden">
-
-                    @if ($apartamento->fotografia)
-                        <img src="{{ asset('storage/' . $apartamento->fotografia) }}" alt="Fotografia do apartamento"
-                            class="card-img-top" style="height:280px; object-fit:cover;">
-                    @else
-                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900"
-                            alt="Fotografia de imóvel moderno" class="card-img-top" style="height:280px; object-fit:cover;">
-                    @endif
-
-                    <div class="card-body">
-
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h5 class="fw-bold mb-0">
-                                {{ $apartamento->referencia }}
-                            </h5>
-
-                            @if ($apartamento->estado == 'Disponivel')
-                                <span class="badge rounded-pill bg-success">
-                                    Disponível
-                                </span>
-                            @else
-                                <span class="badge rounded-pill bg-danger">
-                                    Vendido
-                                </span>
-                            @endif
-                        </div>
-
-                        <p class="text-muted mb-1">
-                            {{ $apartamento->tipologia }} · {{ $apartamento->area }} m²
-                        </p>
-
-                        <p class="mb-3 text-muted">
-                            📍 {{ $apartamento->morada }}
-                        </p>
-
-                        <h4 class="fw-bold" style="color:#0b1f3a;">
-                            € {{ number_format($apartamento->preco, 2, ',', '.') }}
-                        </h4>
-
-                    </div>
-
-                    <div class="card-footer bg-white border-0 p-3">
-                        <a href="{{ route('apartamentos.show', $apartamento) }}" class="btn btn-outline-primary w-100">
-                            Consultar Registo
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-
-        @empty
-
-            <div class="col-12">
-                <div class="alert alert-info">
-                    Nenhum apartamento registado.
-                </div>
-            </div>
-        @endforelse
-
-        <h3 class="fw-bold mb-4 mt-5">
-            Resumo Operacional
-        </h3>
-
-        <div class="row">
-
-            <div class="col-md-4 mb-3">
-                <div class="card border-0 shadow rounded-4 h-100">
-                    <div class="card-body">
-                        <p class="text-muted mb-1">Preço Médio</p>
-
-                        <h3 class="fw-bold" style="color:#0b1f3a;">
-                            € {{ number_format($precoMedio ?? 0, 2, ',', '.') }}
-                        </h3>
-
-                        <p class="mb-0">
-                            média dos apartamentos registados
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-3">
-                <div class="card border-0 shadow rounded-4 h-100">
-                    <div class="card-body">
-                        <p class="text-muted mb-1">Preço Mais Alto</p>
-
-                        <h3 class="fw-bold" style="color:#0b1f3a;">
-                            € {{ number_format($precoMaximo ?? 0, 2, ',', '.') }}
-                        </h3>
-
-                        <p class="mb-0">
-                            imóvel com maior valor registado
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-3">
-                <div class="card border-0 shadow rounded-4 h-100">
-                    <div class="card-body">
-                        <p class="text-muted mb-1">Preço Mais Baixo</p>
-
-                        <h3 class="fw-bold" style="color:#0b1f3a;">
-                            € {{ number_format($precoMinimo ?? 0, 2, ',', '.') }}
-                        </h3>
-
-                        <p class="mb-0">
-                            imóvel com menor valor registado
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row mt-3">
-
-            <div class="col-md-6 mb-3">
-                <div class="card border-0 shadow rounded-4 h-100">
-                    <div class="card-body">
-                        <p class="text-muted mb-1">Apartamentos Disponíveis</p>
-
-                        <h3 class="fw-bold text-success">
-                            {{ $apartamentosDisponiveis }}
-                        </h3>
-
-                        <div class="progress mt-3" style="height: 10px;">
-                            <div class="progress-bar bg-success"
-                                style="width: {{ $totalApartamentos > 0 ? ($apartamentosDisponiveis / $totalApartamentos) * 100 : 0 }}%">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 mb-3">
-                <div class="card border-0 shadow rounded-4 h-100">
-                    <div class="card-body">
-                        <p class="text-muted mb-1">Apartamentos Vendidos</p>
-
-                        <h3 class="fw-bold text-danger">
-                            {{ $apartamentosVendidos }}
-                        </h3>
-
-                        <div class="progress mt-3" style="height: 10px;">
-                            <div class="progress-bar bg-danger"
-                                style="width: {{ $totalApartamentos > 0 ? ($apartamentosVendidos / $totalApartamentos) * 100 : 0 }}%">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    @endsection
+</x-guest-layout>

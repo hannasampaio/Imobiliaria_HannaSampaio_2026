@@ -1,30 +1,125 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="pt">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hanna Imobiliária</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="icon" href="{{ asset('images/logo.ico') }}">
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
-            </div>
-        </div>
-    </body>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background-image:
+                linear-gradient(rgba(11, 31, 58, 0.20), rgba(11, 31, 58, 0.20)),
+                url('{{ asset('images/login-bg.png') }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .auth-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 28px 15px;
+        }
+
+        .auth-footer {
+            color: white;
+            font-size: 12px;
+            opacity: .95;
+            margin-top: 22px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            color: #c9a227;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .password-toggle:hover {
+            color: #b89121;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="auth-page">
+
+        {{ $slot }}
+
+        <p class="auth-footer">
+            © 2026 Hanna Imobiliária. Todos os direitos reservados.
+        </p>
+
+    </div>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            document.querySelectorAll('.password-toggle').forEach(button => {
+
+                button.addEventListener('click', function() {
+
+                    const input =
+                        document.getElementById(
+                            this.dataset.target
+                        );
+
+                    const icon =
+                        this.querySelector('i');
+
+                    if (input.type === 'password') {
+
+                        input.type = 'text';
+
+                        icon.classList.remove('bi-eye');
+                        icon.classList.add('bi-eye-slash');
+
+                    } else {
+
+                        input.type = 'password';
+
+                        icon.classList.remove('bi-eye-slash');
+                        icon.classList.add('bi-eye');
+
+                    }
+
+                });
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
 </html>

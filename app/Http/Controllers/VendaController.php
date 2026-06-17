@@ -6,14 +6,42 @@ use App\Models\Apartamento;
 use App\Models\Cliente;
 use App\Models\Venda;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VendaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $vendas = Venda::with(['cliente', 'apartamento'])
-            ->orderBy('id', 'desc')
-            ->get();
+        $query = Venda::with(['cliente', 'apartamento']);
+
+        if ($request->filled('pesquisa')) {
+            $pesquisa = $request->pesquisa;
+
+            $query->where(function ($q) use ($pesquisa) {
+                $q->whereHas('cliente', function ($cliente) use ($pesquisa) {
+                    $cliente->where('nome', 'like', '%' . $pesquisa . '%');
+                })
+                    ->orWhereHas('apartamento', function ($apartamento) use ($pesquisa) {
+                        $apartamento->where('referencia', 'like', '%' . $pesquisa . '%');
+                    })
+                    ->orWhere('data_venda', 'like', '%' . $pesquisa . '%')
+                    ->orWhere('valor_venda', 'like', '%' . $pesquisa . '%');
+            });
+        }
+
+        $ordenar = $request->get('ordenar', 'recentes');
+
+        if ($ordenar === 'antigas') {
+            $query->orderBy('data_venda', 'asc');
+        } elseif ($ordenar === 'maior_valor') {
+            $query->orderBy('valor_venda', 'desc');
+        } elseif ($ordenar === 'menor_valor') {
+            $query->orderBy('valor_venda', 'asc');
+        } else {
+            $query->orderBy('data_venda', 'desc');
+        }
+
+        $vendas = $query->paginate(8)->withQueryString();
 
         return view('vendas.index', compact('vendas'));
     }
@@ -118,6 +146,10 @@ class VendaController extends Controller
 
     public function destroy(Venda $venda)
     {
+        if (Auth::user()->role !== 'admin') {
+            abort(403, 'Acesso não autorizado.');
+        }
+
         $apartamento = $venda->apartamento;
 
         $venda->delete();
