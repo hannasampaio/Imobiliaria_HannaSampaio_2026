@@ -16,7 +16,8 @@
             margin-top: 10px;
         }
 
-        .property-card {
+        .property-card,
+        .filter-card {
             background: white;
             border-radius: 22px;
             border: 1px solid #eef0f3;
@@ -25,10 +26,6 @@
         }
 
         .filter-card {
-            background: white;
-            border-radius: 20px;
-            border: 1px solid #eef0f3;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .05);
             padding: 22px;
         }
 
@@ -132,6 +129,11 @@
             font-size: 44px;
             color: #c9a227;
         }
+
+        .stat-icon {
+            font-size: 42px;
+            color: #c9a227;
+        }
     </style>
 
     <div class="d-flex justify-content-between align-items-start mb-4">
@@ -157,11 +159,101 @@
         </div>
 
         @if (Auth::user()->role !== 'cliente')
-            <a href="{{ route('apartamentos.create') }}" class="btn btn-gold px-4 py-2 rounded-3">
-                <i class="bi bi-building-add me-2"></i>
-                Novo Apartamento
-            </a>
+            <div class="d-flex gap-2">
+
+                <a href="{{ route('relatorios.apartamentos') }}" target="_blank" class="btn btn-report px-4 py-2 rounded-3">
+                    <i class="bi bi-file-earmark-pdf-fill me-2"></i>
+                    Relatório PDF
+                </a>
+
+                <a href="{{ route('apartamentos.create') }}" class="btn btn-gold px-4 py-2 rounded-3">
+                    <i class="bi bi-building-add me-2"></i>
+                    Novo Apartamento
+                </a>
+
+            </div>
         @endif
+
+    </div>
+    <div class="row g-4 mb-4">
+
+        <div class="col-md-4">
+
+            <div class="property-card p-4 h-100">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <small class="text-muted">
+                            Total de Apartamentos
+                        </small>
+
+                        <h2 class="fw-bold mt-2 mb-0" style="color:#0b1f3a;">
+                            {{ $totalApartamentos }}
+                        </h2>
+
+                    </div>
+
+                    <i class="bi bi-buildings stat-icon"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="property-card p-4 h-100">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <small class="text-muted">
+                            Apartamentos Disponíveis
+                        </small>
+
+                        <h2 class="fw-bold mt-2 mb-0" style="color:#0b1f3a;">
+                            {{ $apartamentosDisponiveis }}
+                        </h2>
+
+                    </div>
+
+                    <i class="bi bi-house-check-fill stat-icon"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="property-card p-4 h-100">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <small class="text-muted">
+                            Último Apartamento Registado
+                        </small>
+
+                        <h4 class="fw-bold mt-3 mb-0" style="color:#0b1f3a;">
+                            {{ $ultimoApartamento->referencia ?? '-' }}
+                        </h4>
+
+                    </div>
+
+                    <i class="bi bi-house-fill stat-icon"></i>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -219,10 +311,19 @@
             </div>
 
             <div class="col-md-2">
-                <button type="submit" class="btn btn-outline-primary w-100 py-2 rounded-3">
-                    <i class="bi bi-search me-1"></i>
-                    Filtrar
-                </button>
+                <div class="d-grid gap-2">
+
+                    <button type="submit" class="btn btn-outline-primary rounded-3">
+                        <i class="bi bi-search me-1"></i>
+                        Filtrar
+                    </button>
+
+                    <a href="{{ route('apartamentos.index') }}" class="btn btn-outline-secondary rounded-3">
+                        <i class="bi bi-x-circle me-1"></i>
+                        Limpar
+                    </a>
+
+                </div>
             </div>
 
         </form>
@@ -346,13 +447,12 @@
 
                                     @if (Auth::user()->role === 'admin')
                                         <form action="{{ route('apartamentos.destroy', $apartamento) }}" method="POST"
-                                            class="d-inline">
+                                            class="d-inline delete-form">
 
                                             @csrf
                                             @method('DELETE')
 
-                                            <button type="submit" class="action-btn delete ms-1" title="Apagar"
-                                                onclick="return confirm('Tem certeza que deseja apagar este apartamento?')">
+                                            <button type="submit" class="action-btn delete ms-1" title="Apagar">
                                                 <i class="bi bi-trash-fill"></i>
                                             </button>
 

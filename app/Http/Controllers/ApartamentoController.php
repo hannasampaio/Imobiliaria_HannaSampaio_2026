@@ -47,7 +47,17 @@ class ApartamentoController extends Controller
             ->paginate(8)
             ->withQueryString();
 
-        return view('apartamentos.index', compact('apartamentos'));
+        $totalApartamentos = Apartamento::count();
+
+        $apartamentosDisponiveis = Apartamento::where('estado', 'Disponivel')->count();
+
+        $ultimoApartamento = Apartamento::latest()->first();
+        return view('apartamentos.index', compact(
+            'apartamentos',
+            'totalApartamentos',
+            'apartamentosDisponiveis',
+            'ultimoApartamento'
+        ));
     }
 
     public function create()

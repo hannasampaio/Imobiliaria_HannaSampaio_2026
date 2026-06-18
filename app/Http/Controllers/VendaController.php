@@ -43,7 +43,20 @@ class VendaController extends Controller
 
         $vendas = $query->paginate(8)->withQueryString();
 
-        return view('vendas.index', compact('vendas'));
+        $totalVendas = Venda::count();
+
+        $faturamentoTotal = Venda::sum('valor_venda');
+
+        $ultimaVenda = Venda::with(['cliente', 'apartamento'])
+            ->latest()
+            ->first();
+
+        return view('vendas.index', compact(
+            'vendas',
+            'totalVendas',
+            'faturamentoTotal',
+            'ultimaVenda'
+        ));
     }
 
     public function create()

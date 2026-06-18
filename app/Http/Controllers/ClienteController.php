@@ -9,36 +9,55 @@ use Illuminate\Support\Facades\Auth;
 class ClienteController extends Controller
 {
     public function index(Request $request)
-{
-    $query = Cliente::query();
+    {
+        $query = Cliente::query();
 
-    if ($request->filled('pesquisa')) {
-        $pesquisa = $request->pesquisa;
+        if ($request->filled('pesquisa')) {
+            $pesquisa = $request->pesquisa;
 
-        $query->where(function ($q) use ($pesquisa) {
-            $q->where('nome', 'like', '%' . $pesquisa . '%')
-                ->orWhere('email', 'like', '%' . $pesquisa . '%')
-                ->orWhere('telefone', 'like', '%' . $pesquisa . '%')
-                ->orWhere('nif', 'like', '%' . $pesquisa . '%');
-        });
+            $query->where(function ($q) use ($pesquisa) {
+                $q->where('nome', 'like', "%{$pesquisa}%")
+                    ->orWhere('email', 'like', "%{$pesquisa}%")
+                    ->orWhere('telefone', 'like', "%{$pesquisa}%")
+                    ->orWhere('nif', 'like', "%{$pesquisa}%");
+            });
+        }
+
+        switch ($request->get('ordenar')) {
+
+            case 'antigos':
+                $query->orderBy('id');
+                break;
+
+            case 'nome_az':
+                $query->orderBy('nome');
+                break;
+
+            case 'nome_za':
+                $query->orderByDesc('nome');
+                break;
+
+            default:
+                $query->orderByDesc('id');
+        }
+
+        $clientes = $query->paginate(8)->withQueryString();
+
+        $totalClientes = Cliente::count();
+
+        $clientesEsteMes = Cliente::whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
+            ->count();
+
+        $ultimoCliente = Cliente::latest()->first();
+
+        return view('clientes.index', compact(
+            'clientes',
+            'totalClientes',
+            'clientesEsteMes',
+            'ultimoCliente'
+        ));
     }
-
-    $ordenar = $request->get('ordenar', 'recentes');
-
-    if ($ordenar === 'nome_az') {
-        $query->orderBy('nome', 'asc');
-    } elseif ($ordenar === 'nome_za') {
-        $query->orderBy('nome', 'desc');
-    } elseif ($ordenar === 'antigos') {
-        $query->orderBy('id', 'asc');
-    } else {
-        $query->orderBy('id', 'desc');
-    }
-    
-    $clientes = $query->paginate(8)->withQueryString();
-
-    return view('clientes.index', compact('clientes'));
-}
 
     public function create()
     {

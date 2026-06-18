@@ -11,6 +11,8 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         :root {
             --navy: #0b1f3a;
@@ -245,6 +247,63 @@
         .page-item.active .page-link {
             font-weight: 700;
         }
+
+        .btn-report {
+            color: #0b1f3a;
+            border: 2px solid #c9a227;
+            background: white;
+            font-weight: 600;
+            transition: .25s;
+        }
+
+        .btn-report i {
+            color: #c9a227;
+        }
+
+        .btn-report:hover {
+            background: #c9a227;
+            color: #0b1f3a;
+            border-color: #c9a227;
+        }
+
+        .btn-report:hover i {
+            color: #0b1f3a;
+        }
+
+        .custom-toast-success {
+            background: linear-gradient(135deg, #0b1f3a, #12345a);
+            color: white;
+            border-left: 5px solid #c9a227 !important;
+            border-radius: 16px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, .22);
+            font-weight: 600;
+        }
+
+        .custom-toast-error {
+            background: linear-gradient(135deg, #7f1d1d, #b91c1c);
+            color: white;
+            border-left: 5px solid #facc15 !important;
+            border-radius: 16px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, .22);
+            font-weight: 600;
+        }
+
+        .toast {
+            min-width: 340px;
+            animation: slideInToast .35s ease-out;
+        }
+
+        @keyframes slideInToast {
+            from {
+                opacity: 0;
+                transform: translateX(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
     </style>
 </head>
 
@@ -357,21 +416,46 @@
 
             <div class="content-wrapper">
 
-                @if (session('success'))
-                    <div class="alert alert-success shadow-sm">
-                        {{ session('success') }}
-                    </div>
-                @endif
+                <div class="toast-container position-fixed top-0 end-0 p-4" style="z-index: 9999;">
 
-                @if ($errors->any())
-                    <div class="alert alert-danger shadow-sm">
-                        <ul class="mb-0">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                    @if (session('success'))
+                        <div class="toast align-items-center border-0 show custom-toast-success" role="alert"
+                            aria-live="assertive" aria-atomic="true">
+
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    <i class="bi bi-check-circle-fill me-2"></i>
+                                    {{ session('success') }}
+                                </div>
+
+                                <button type="button" class="btn-close btn-close-white me-3 m-auto"
+                                    data-bs-dismiss="toast" aria-label="Fechar"></button>
+                            </div>
+
+                        </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div class="toast align-items-center border-0 show custom-toast-error" role="alert"
+                            aria-live="assertive" aria-atomic="true">
+
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+
+                                    @foreach ($errors->all() as $error)
+                                        <div>{{ $error }}</div>
+                                    @endforeach
+                                </div>
+
+                                <button type="button" class="btn-close btn-close-white me-3 m-auto"
+                                    data-bs-dismiss="toast" aria-label="Fechar"></button>
+                            </div>
+
+                        </div>
+                    @endif
+
+                </div>
 
                 <div class="page-card">
                     @yield('content')
@@ -384,6 +468,52 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Toasts Bootstrap
+            const toastElements = document.querySelectorAll('.toast');
+
+            toastElements.forEach(function(toastElement) {
+                const toast = new bootstrap.Toast(toastElement, {
+                    delay: 4000
+                });
+
+                toast.show();
+            });
+
+            // SweetAlert para eliminar
+            document.querySelectorAll('.delete-form').forEach(function(form) {
+
+                form.addEventListener('submit', function(e) {
+
+                    e.preventDefault();
+
+                    Swal.fire({
+                        title: 'Eliminar registo?',
+                        text: 'Esta ação não pode ser desfeita.',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#c9a227',
+                        cancelButtonColor: '#6c757d',
+                        confirmButtonText: 'Sim, eliminar',
+                        cancelButtonText: 'Cancelar',
+                        reverseButtons: true
+                    }).then((result) => {
+
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+
+                    });
+
+                });
+
+            });
+
+        });
+    </script>
 
 </body>
 

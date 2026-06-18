@@ -99,6 +99,11 @@
             font-size: 44px;
             color: #c9a227;
         }
+
+        .stat-icon {
+            font-size: 42px;
+            color: #c9a227;
+        }
     </style>
 
     <div class="d-flex justify-content-between align-items-start mb-4">
@@ -115,31 +120,62 @@
             <div class="gold-line"></div>
         </div>
 
-        <a href="{{ route('clientes.create') }}" class="btn btn-gold px-4 py-2 rounded-3">
-            <i class="bi bi-person-plus-fill me-2"></i>
-            Novo Cliente
-        </a>
+        <div class="d-flex gap-2">
 
+            <a href="{{ route('relatorios.clientes') }}" target="_blank"
+                class="btn btn-outline-primary px-4 py-2 rounded-3 btn-report">
+                <i class="bi bi-file-earmark-pdf-fill me-2"></i>
+                Relatório PDF
+            </a>
+
+            <a href="{{ route('clientes.create') }}" class="btn btn-gold px-4 py-2 rounded-3">
+                <i class="bi bi-person-plus-fill me-2"></i>
+                Novo Cliente
+            </a>
+        </div>
     </div>
-
     <div class="row g-4 mb-4">
 
         <div class="col-md-4">
-            <div class="client-card p-4">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="client-avatar">
-                        <i class="bi bi-people-fill"></i>
-                    </div>
-
+            <div class="client-card p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center h-100">
                     <div>
-                        <h3 class="fw-bold mb-0" style="color:#0b1f3a;">
-                            {{ $clientes->count() }}
-                        </h3>
-
-                        <small class="text-muted">
-                            clientes listados
-                        </small>
+                        <small class="text-muted">Total de Clientes</small>
+                        <h2 class="fw-bold mt-2 mb-0" style="color:#0b1f3a;">
+                            {{ $totalClientes }}
+                        </h2>
                     </div>
+
+                    <i class="bi bi-people-fill stat-icon"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="client-card p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center h-100">
+                    <div>
+                        <small class="text-muted">Novos este mês</small>
+                        <h2 class="fw-bold mt-2 mb-0" style="color:#0b1f3a;">
+                            {{ $clientesEsteMes }}
+                        </h2>
+                    </div>
+
+                    <i class="bi bi-person-plus-fill stat-icon"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="client-card p-4 h-100">
+                <div class="d-flex flex-column justify-content-center h-100">
+                    <small class="text-muted">Último Cliente</small>
+
+                    <h5 class="fw-bold mt-2 mb-1" style="color:#0b1f3a;">
+                        {{ $ultimoCliente->nome ?? 'Sem clientes' }}
+                    </h5>
+
+                    <small class="text-muted">Registado recentemente</small>
                 </div>
             </div>
         </div>
@@ -183,10 +219,19 @@
             </div>
 
             <div class="col-md-2">
-                <button type="submit" class="btn btn-outline-primary w-100 py-2 rounded-3">
-                    <i class="bi bi-search me-1"></i>
-                    Filtrar
-                </button>
+                <div class="d-grid gap-2">
+
+                    <button type="submit" class="btn btn-outline-primary rounded-3">
+                        <i class="bi bi-search me-1"></i>
+                        Filtrar
+                    </button>
+
+                    <a href="{{ route('clientes.index') }}" class="btn btn-outline-secondary rounded-3">
+                        <i class="bi bi-x-circle me-1"></i>
+                        Limpar
+                    </a>
+
+                </div>
             </div>
 
         </form>
@@ -280,13 +325,12 @@
 
                                 @if (Auth::user()->role === 'admin')
                                     <form action="{{ route('clientes.destroy', $cliente) }}" method="POST"
-                                        class="d-inline">
+                                        class="d-inline delete-form">
 
                                         @csrf
                                         @method('DELETE')
 
-                                        <button type="submit" class="action-btn delete ms-1" title="Apagar"
-                                            onclick="return confirm('Tem certeza que deseja apagar este cliente?')">
+                                        <button type="submit" class="action-btn delete ms-1" title="Apagar">
                                             <i class="bi bi-trash-fill"></i>
                                         </button>
 

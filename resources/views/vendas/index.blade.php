@@ -136,31 +136,71 @@
             <div class="gold-line"></div>
         </div>
 
-        <a href="{{ route('vendas.create') }}" class="btn btn-gold px-4 py-2 rounded-3">
-            <i class="bi bi-plus-circle-fill me-2"></i>
-            Nova Venda
-        </a>
+        <div class="d-flex gap-2">
+
+            <a href="{{ route('relatorios.vendas') }}" target="_blank" class="btn btn-report px-4 py-2 rounded-3">
+                <i class="bi bi-file-earmark-pdf-fill me-2"></i>
+                Relatório PDF
+            </a>
+
+            <a href="{{ route('vendas.create') }}" class="btn btn-gold px-4 py-2 rounded-3">
+                <i class="bi bi-plus-circle-fill me-2"></i>
+                Nova Venda
+            </a>
+
+        </div>
 
     </div>
-
     <div class="row g-4 mb-4">
 
         <div class="col-md-4">
-            <div class="sales-card p-4">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="sales-icon">
-                        <i class="bi bi-cash-coin"></i>
+            <div class="sales-card p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center h-100">
+                    <div>
+                        <small class="text-muted">Total de Vendas</small>
+
+                        <h2 class="fw-bold mt-2 mb-0" style="color:#0b1f3a;">
+                            {{ $totalVendas }}
+                        </h2>
                     </div>
 
+                    <i class="bi bi-receipt-cutoff" style="font-size:42px;color:#c9a227;"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="sales-card p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center h-100">
                     <div>
-                        <h3 class="fw-bold mb-0" style="color:#0b1f3a;">
-                            {{ $vendas->count() }}
-                        </h3>
+                        <small class="text-muted">Faturamento Total</small>
+
+                        <h4 class="fw-bold mt-2 mb-0" style="color:#0b1f3a;">
+                            € {{ number_format($faturamentoTotal ?? 0, 2, ',', '.') }}
+                        </h4>
+                    </div>
+
+                    <i class="bi bi-wallet2" style="font-size:42px;color:#c9a227;"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="sales-card p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center h-100">
+                    <div>
+                        <small class="text-muted">Última Venda Registada</small>
+
+                        <h4 class="fw-bold mt-2 mb-1" style="color:#0b1f3a;">
+                            {{ $ultimaVenda->apartamento->referencia ?? 'Sem vendas' }}
+                        </h4>
 
                         <small class="text-muted">
-                            vendas listadas
+                            {{ $ultimaVenda->cliente->nome ?? '' }}
                         </small>
                     </div>
+
+                    <i class="bi bi-cash-coin" style="font-size:42px;color:#c9a227;"></i>
                 </div>
             </div>
         </div>
@@ -207,10 +247,19 @@
             </div>
 
             <div class="col-md-2">
-                <button type="submit" class="btn btn-outline-primary w-100 py-2 rounded-3">
-                    <i class="bi bi-search me-1"></i>
-                    Filtrar
-                </button>
+                <div class="d-grid gap-2">
+
+                    <button type="submit" class="btn btn-outline-primary rounded-3">
+                        <i class="bi bi-search me-1"></i>
+                        Filtrar
+                    </button>
+
+                    <a href="{{ route('vendas.index') }}" class="btn btn-outline-secondary rounded-3">
+                        <i class="bi bi-x-circle me-1"></i>
+                        Limpar
+                    </a>
+
+                </div>
             </div>
 
         </form>
@@ -311,13 +360,12 @@
                                 </a>
 
                                 @if (Auth::user()->role === 'admin')
-                                    <form action="{{ route('vendas.destroy', $venda) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('vendas.destroy', $venda) }}" method="POST" class="d-inline delete-form">
 
                                         @csrf
                                         @method('DELETE')
 
-                                        <button type="submit" class="action-btn delete ms-1" title="Apagar"
-                                            onclick="return confirm('Tem certeza que deseja apagar esta venda?')">
+                                        <button type="submit" class="action-btn delete ms-1" title="Apagar">
                                             <i class="bi bi-trash-fill"></i>
                                         </button>
 
