@@ -1,68 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-<style>
-    .page-title {
-        color: #0b1f3a;
-        font-weight: 800;
-    }
-
-    .gold-line {
-        width: 55px;
-        height: 3px;
-        background: #c9a227;
-        border-radius: 10px;
-        margin-top: 10px;
-    }
-
-    .form-card {
-        background: white;
-        border-radius: 22px;
-        border: 1px solid #eef0f3;
-        box-shadow: 0 12px 35px rgba(0,0,0,.07);
-        overflow: hidden;
-    }
-
-    .form-header {
-        padding: 24px 30px;
-        border-bottom: 1px solid #eef0f3;
-    }
-
-    .form-body {
-        padding: 30px;
-    }
-
-    .form-label {
-        font-weight: 600;
-        color: #0b1f3a;
-    }
-
-    .form-control {
-        border-radius: 12px;
-        border: 1px solid #dbe2ea;
-        padding: 12px 14px;
-    }
-
-    .form-control:focus {
-        border-color: #c9a227;
-        box-shadow: 0 0 0 0.15rem rgba(201,162,39,.20);
-    }
-
-    .client-icon {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        background: rgba(201,162,39,.12);
-        color: #c9a227;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 32px;
-        margin: auto;
-    }
-</style>
-
 <div class="d-flex justify-content-between align-items-start mb-4">
 
 

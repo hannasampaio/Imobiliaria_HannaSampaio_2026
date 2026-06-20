@@ -34,7 +34,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         $precoMaximo = Apartamento::max('preco');
         $precoMinimo = Apartamento::min('preco');
 
-        $apartamentosDestaque = Apartamento::latest()
+        $apartamentosDestaque = Apartamento::where('estado', 'Disponivel')
+            ->latest()
             ->take(3)
             ->get();
 

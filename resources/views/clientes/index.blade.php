@@ -1,111 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <style>
-        .page-title {
-            color: #0b1f3a;
-            font-weight: 800;
-        }
-
-        .gold-line {
-            width: 55px;
-            height: 3px;
-            background: #c9a227;
-            border-radius: 10px;
-            margin-top: 10px;
-        }
-
-        .client-card {
-            background: white;
-            border-radius: 22px;
-            border: 1px solid #eef0f3;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, .07);
-            overflow: hidden;
-        }
-
-        .client-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(201, 162, 39, .16);
-            color: #0b1f3a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            border: 1px solid rgba(201, 162, 39, .35);
-        }
-
-        .table-premium {
-            margin-bottom: 0;
-        }
-
-        .table-premium thead th {
-            background: #f8fafc;
-            color: #6b7280;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: .4px;
-            border-bottom: 1px solid #eef0f3;
-            padding: 16px;
-        }
-
-        .table-premium tbody td {
-            padding: 18px 16px;
-            vertical-align: middle;
-            border-bottom: 1px solid #f1f3f5;
-        }
-
-        .table-premium tbody tr:hover {
-            background: #fbfcfd;
-        }
-
-        .action-btn {
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            border: 1px solid #e5e7eb;
-            background: white;
-            transition: .2s;
-        }
-
-        .action-btn.view {
-            color: #0b1f3a;
-        }
-
-        .action-btn.edit {
-            color: #c9a227;
-        }
-
-        .action-btn.delete {
-            color: #dc3545;
-        }
-
-        .action-btn:hover {
-            background: #f8fafc;
-            transform: translateY(-1px);
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .empty-state i {
-            font-size: 44px;
-            color: #c9a227;
-        }
-
-        .stat-icon {
-            font-size: 42px;
-            color: #c9a227;
-        }
-    </style>
-
     <div class="d-flex justify-content-between align-items-start mb-4">
 
         <div>
@@ -325,7 +220,9 @@
 
                                 @if (Auth::user()->role === 'admin')
                                     <form action="{{ route('clientes.destroy', $cliente) }}" method="POST"
-                                        class="d-inline delete-form">
+                                        class="d-inline delete-form"
+                                        data-title="Eliminar Cliente"
+                                        data-text="Tem a certeza que pretende eliminar este cliente?">
 
                                         @csrf
                                         @method('DELETE')

@@ -1,141 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <style>
-        .page-title {
-            color: #0b1f3a;
-            font-weight: 800;
-        }
-
-        .gold-line {
-            width: 55px;
-            height: 3px;
-            background: #c9a227;
-            border-radius: 10px;
-            margin-top: 10px;
-        }
-
-        .property-card,
-        .filter-card {
-            background: white;
-            border-radius: 22px;
-            border: 1px solid #eef0f3;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, .07);
-            overflow: hidden;
-        }
-
-        .filter-card {
-            padding: 22px;
-        }
-
-        .form-control,
-        .form-select {
-            border-radius: 12px;
-            border: 1px solid #dbe2ea;
-            padding: 12px 14px;
-        }
-
-        .form-control:focus,
-        .form-select:focus {
-            border-color: #c9a227;
-            box-shadow: 0 0 0 .15rem rgba(201, 162, 39, .20);
-        }
-
-        .property-thumb {
-            width: 92px;
-            height: 72px;
-            object-fit: cover;
-            border-radius: 13px;
-        }
-
-        .status-pill {
-            padding: 7px 14px;
-            border-radius: 999px;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .status-disponivel {
-            background: #e6f7ed;
-            color: #198754;
-        }
-
-        .status-vendido {
-            background: #fdeaea;
-            color: #dc3545;
-        }
-
-        .table-premium {
-            margin-bottom: 0;
-        }
-
-        .table-premium thead th {
-            background: #f8fafc;
-            color: #6b7280;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: .4px;
-            border-bottom: 1px solid #eef0f3;
-            padding: 16px;
-        }
-
-        .table-premium tbody td {
-            padding: 18px 16px;
-            vertical-align: middle;
-            border-bottom: 1px solid #f1f3f5;
-        }
-
-        .table-premium tbody tr:hover {
-            background: #fbfcfd;
-        }
-
-        .action-btn {
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            border: 1px solid #e5e7eb;
-            background: white;
-            transition: .2s;
-        }
-
-        .action-btn.view {
-            color: #0b1f3a;
-        }
-
-        .action-btn.edit {
-            color: #c9a227;
-        }
-
-        .action-btn.delete {
-            color: #dc3545;
-        }
-
-        .action-btn:hover {
-            background: #f8fafc;
-            transform: translateY(-1px);
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .empty-state i {
-            font-size: 44px;
-            color: #c9a227;
-        }
-
-        .stat-icon {
-            font-size: 42px;
-            color: #c9a227;
-        }
-    </style>
-
     <div class="d-flex justify-content-between align-items-start mb-4">
 
         <div>
@@ -447,7 +312,8 @@
 
                                     @if (Auth::user()->role === 'admin')
                                         <form action="{{ route('apartamentos.destroy', $apartamento) }}" method="POST"
-                                            class="d-inline delete-form">
+                                            class="d-inline delete-form" data-title="Eliminar Apartamento"
+                                            data-text="Tem a certeza que pretende eliminar este apartamento?">
 
                                             @csrf
                                             @method('DELETE')

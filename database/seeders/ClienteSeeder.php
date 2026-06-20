@@ -2,35 +2,22 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Cliente;
 use Illuminate\Database\Seeder;
 
 class ClienteSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        \App\Models\Cliente::insert([
-            [
-                'nome' => 'Maria Silva',
-                'email' => 'maria@email.com',
-                'telefone' => '912345678',
-                'morada' => 'Braga',
-                'nif' => '123456789',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nome' => 'João Costa',
-                'email' => 'joao@email.com',
-                'telefone' => '913456789',
-                'morada' => 'Porto',
-                'nif' => '987654321',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+
+        for ($i = 1; $i <= 20; $i++) {
+            Cliente::create([
+                'nome' => 'Cliente ' . $i,
+                'email' => 'cliente' . $i . '@email.com',
+                'telefone' => '9100000' . str_pad($i, 2, '0', STR_PAD_LEFT),
+                'morada' => 'Rua dos Clientes, nº ' . $i,
+                'nif' => str_pad((string)(200000000 + $i), 9, '0', STR_PAD_LEFT),
+            ]);
+        }
     }
 }

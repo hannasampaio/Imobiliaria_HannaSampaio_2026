@@ -1,0 +1,1203 @@
+
+/* ==========================
+   resources/views/apartamentos/create.blade.php
+========================== */
+
+.page-title {
+        color: #0b1f3a;
+        font-weight: 800;
+    }
+
+    .gold-line {
+        width: 55px;
+        height: 3px;
+        background: #c9a227;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .form-card {
+        background: white;
+        border-radius: 22px;
+        border: 1px solid #eef0f3;
+        box-shadow: 0 12px 35px rgba(0,0,0,.07);
+        overflow: hidden;
+    }
+
+    .form-header {
+        padding: 30px;
+        border-bottom: 1px solid #eef0f3;
+    }
+
+    .form-body {
+        padding: 30px;
+    }
+
+    .property-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: rgba(201,162,39,.12);
+        color: #c9a227;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 34px;
+        margin: auto;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #0b1f3a;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 12px;
+        border: 1px solid #dbe2ea;
+        padding: 12px 14px;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #c9a227;
+        box-shadow: 0 0 0 .15rem rgba(201,162,39,.20);
+    }
+
+    .upload-box {
+        border: 2px dashed #dbe2ea;
+        border-radius: 16px;
+        padding: 25px;
+        text-align: center;
+        background: #fafbfd;
+    }
+
+
+/* ==========================
+   resources/views/apartamentos/edit.blade.php
+========================== */
+
+.page-title {
+        color: #0b1f3a;
+        font-weight: 800;
+    }
+
+    .gold-line {
+        width: 55px;
+        height: 3px;
+        background: #c9a227;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .form-card {
+        background: white;
+        border-radius: 22px;
+        border: 1px solid #eef0f3;
+        box-shadow: 0 12px 35px rgba(0,0,0,.07);
+        overflow: hidden;
+    }
+
+    .form-header {
+        padding: 30px;
+        border-bottom: 1px solid #eef0f3;
+    }
+
+    .form-body {
+        padding: 30px;
+    }
+
+    .property-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: rgba(201,162,39,.12);
+        color: #c9a227;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 34px;
+        margin: auto;
+    }
+
+    .property-id {
+        display: inline-block;
+        margin-top: 10px;
+        background: #f5ead0;
+        color: #9b741c;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #0b1f3a;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 12px;
+        border: 1px solid #dbe2ea;
+        padding: 12px 14px;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #c9a227;
+        box-shadow: 0 0 0 .15rem rgba(201,162,39,.20);
+    }
+
+    .upload-box {
+        border: 2px dashed #dbe2ea;
+        border-radius: 16px;
+        padding: 25px;
+        text-align: center;
+        background: #fafbfd;
+    }
+
+    .current-photo {
+        width: 100%;
+        max-height: 230px;
+        object-fit: cover;
+        border-radius: 16px;
+        border: 1px solid #eef0f3;
+        box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    }
+
+
+/* ==========================
+   resources/views/apartamentos/index.blade.php
+========================== */
+
+.page-title {
+            color: #0b1f3a;
+            font-weight: 800;
+        }
+
+        .gold-line {
+            width: 55px;
+            height: 3px;
+            background: #c9a227;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .property-card,
+        .filter-card {
+            background: white;
+            border-radius: 22px;
+            border: 1px solid #eef0f3;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .07);
+            overflow: hidden;
+        }
+
+        .filter-card {
+            padding: 22px;
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 12px;
+            border: 1px solid #dbe2ea;
+            padding: 12px 14px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #c9a227;
+            box-shadow: 0 0 0 .15rem rgba(201, 162, 39, .20);
+        }
+
+        .property-thumb {
+            width: 92px;
+            height: 72px;
+            object-fit: cover;
+            border-radius: 13px;
+        }
+
+        .status-pill {
+            padding: 7px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .status-disponivel {
+            background: #e6f7ed;
+            color: #198754;
+        }
+
+        .status-vendido {
+            background: #fdeaea;
+            color: #dc3545;
+        }
+
+        .table-premium {
+            margin-bottom: 0;
+        }
+
+        .table-premium thead th {
+            background: #f8fafc;
+            color: #6b7280;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: .4px;
+            border-bottom: 1px solid #eef0f3;
+            padding: 16px;
+        }
+
+        .table-premium tbody td {
+            padding: 18px 16px;
+            vertical-align: middle;
+            border-bottom: 1px solid #f1f3f5;
+        }
+
+        .table-premium tbody tr:hover {
+            background: #fbfcfd;
+        }
+
+        .action-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border: 1px solid #e5e7eb;
+            background: white;
+            transition: .2s;
+        }
+
+        .action-btn.view {
+            color: #0b1f3a;
+        }
+
+        .action-btn.edit {
+            color: #c9a227;
+        }
+
+        .action-btn.delete {
+            color: #dc3545;
+        }
+
+        .action-btn:hover {
+            background: #f8fafc;
+            transform: translateY(-1px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-state i {
+            font-size: 44px;
+            color: #c9a227;
+        }
+
+        .stat-icon {
+            font-size: 42px;
+            color: #c9a227;
+        }
+
+
+/* ==========================
+   resources/views/apartamentos/show.blade.php
+========================== */
+
+.page-title {
+        color: #0b1f3a;
+        font-weight: 800;
+    }
+
+    .gold-line {
+        width: 55px;
+        height: 3px;
+        background: #c9a227;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .property-card {
+        background: white;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 1px solid #eef0f3;
+        box-shadow: 0 15px 40px rgba(0,0,0,.08);
+    }
+
+    .property-image {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+    }
+
+    .property-body {
+        padding: 30px;
+    }
+
+    .price-box {
+        background: linear-gradient(135deg, #0b1f3a, #163b63);
+        color: white;
+        padding: 25px;
+        border-radius: 20px;
+        text-align: center;
+    }
+
+    .price-box h2 {
+        margin: 0;
+        color: #c9a227;
+        font-weight: 800;
+    }
+
+    .info-card {
+        background: #fafbfd;
+        border: 1px solid #eef0f3;
+        border-radius: 16px;
+        padding: 18px;
+        height: 100%;
+    }
+
+    .info-label {
+        color: #6b7280;
+        font-size: 13px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+    }
+
+    .info-value {
+        color: #0b1f3a;
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+    .status-pill {
+        padding: 8px 16px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 13px;
+    }
+
+    .status-disponivel {
+        background: #e8f7ee;
+        color: #198754;
+    }
+
+    .status-vendido {
+        background: #fdeaea;
+        color: #dc3545;
+    }
+
+
+/* ==========================
+   resources/views/clientes/create.blade.php
+========================== */
+
+.page-title {
+        color: #0b1f3a;
+        font-weight: 800;
+    }
+
+    .gold-line {
+        width: 55px;
+        height: 3px;
+        background: #c9a227;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .form-card {
+        background: white;
+        border-radius: 22px;
+        border: 1px solid #eef0f3;
+        box-shadow: 0 12px 35px rgba(0,0,0,.07);
+        overflow: hidden;
+    }
+
+    .form-header {
+        padding: 24px 30px;
+        border-bottom: 1px solid #eef0f3;
+    }
+
+    .form-body {
+        padding: 30px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #0b1f3a;
+    }
+
+    .form-control {
+        border-radius: 12px;
+        border: 1px solid #dbe2ea;
+        padding: 12px 14px;
+    }
+
+    .form-control:focus {
+        border-color: #c9a227;
+        box-shadow: 0 0 0 0.15rem rgba(201,162,39,.20);
+    }
+
+    .client-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: rgba(201,162,39,.12);
+        color: #c9a227;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        margin: auto;
+    }
+
+
+/* ==========================
+   resources/views/clientes/edit.blade.php
+========================== */
+
+.page-title {
+        color: #0b1f3a;
+        font-weight: 800;
+    }
+
+    .gold-line {
+        width: 55px;
+        height: 3px;
+        background: #c9a227;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .form-card {
+        background: white;
+        border-radius: 22px;
+        border: 1px solid #eef0f3;
+        box-shadow: 0 12px 35px rgba(0,0,0,.07);
+        overflow: hidden;
+    }
+
+    .form-header {
+        padding: 24px 30px;
+        border-bottom: 1px solid #eef0f3;
+    }
+
+    .form-body {
+        padding: 30px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #0b1f3a;
+    }
+
+    .form-control {
+        border-radius: 12px;
+        border: 1px solid #dbe2ea;
+        padding: 12px 14px;
+    }
+
+    .form-control:focus {
+        border-color: #c9a227;
+        box-shadow: 0 0 0 .15rem rgba(201,162,39,.20);
+    }
+
+    .client-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: rgba(201,162,39,.12);
+        color: #c9a227;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        margin: auto;
+    }
+
+    .client-id {
+        display: inline-block;
+        margin-top: 10px;
+        background: #f5ead0;
+        color: #9b741c;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+
+/* ==========================
+   resources/views/clientes/index.blade.php
+========================== */
+
+.page-title {
+            color: #0b1f3a;
+            font-weight: 800;
+        }
+
+        .gold-line {
+            width: 55px;
+            height: 3px;
+            background: #c9a227;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .client-card {
+            background: white;
+            border-radius: 22px;
+            border: 1px solid #eef0f3;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .07);
+            overflow: hidden;
+        }
+
+        .client-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(201, 162, 39, .16);
+            color: #0b1f3a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            border: 1px solid rgba(201, 162, 39, .35);
+        }
+
+        .table-premium {
+            margin-bottom: 0;
+        }
+
+        .table-premium thead th {
+            background: #f8fafc;
+            color: #6b7280;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: .4px;
+            border-bottom: 1px solid #eef0f3;
+            padding: 16px;
+        }
+
+        .table-premium tbody td {
+            padding: 18px 16px;
+            vertical-align: middle;
+            border-bottom: 1px solid #f1f3f5;
+        }
+
+        .table-premium tbody tr:hover {
+            background: #fbfcfd;
+        }
+
+        .action-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border: 1px solid #e5e7eb;
+            background: white;
+            transition: .2s;
+        }
+
+        .action-btn.view {
+            color: #0b1f3a;
+        }
+
+        .action-btn.edit {
+            color: #c9a227;
+        }
+
+        .action-btn.delete {
+            color: #dc3545;
+        }
+
+        .action-btn:hover {
+            background: #f8fafc;
+            transform: translateY(-1px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-state i {
+            font-size: 44px;
+            color: #c9a227;
+        }
+
+        .stat-icon {
+            font-size: 42px;
+            color: #c9a227;
+        }
+
+
+/* ==========================
+   resources/views/clientes/show.blade.php
+========================== */
+
+.page-title {
+        color: #0b1f3a;
+        font-weight: 800;
+    }
+
+    .gold-line {
+        width: 55px;
+        height: 3px;
+        background: #c9a227;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .profile-card {
+        background: white;
+        border-radius: 22px;
+        border: 1px solid #eef0f3;
+        box-shadow: 0 12px 35px rgba(0,0,0,.07);
+        overflow: hidden;
+    }
+
+    .profile-header {
+        padding: 40px;
+        text-align: center;
+        border-bottom: 1px solid #eef0f3;
+    }
+
+    .profile-avatar {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background: rgba(201,162,39,.12);
+        color: #0b1f3a;
+        border: 3px solid #c9a227;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 42px;
+        font-weight: 800;
+        margin: auto;
+    }
+
+    .info-card {
+        background: #fafbfd;
+        border: 1px solid #eef0f3;
+        border-radius: 16px;
+        padding: 18px;
+        height: 100%;
+    }
+
+    .info-label {
+        color: #6b7280;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        margin-bottom: 6px;
+    }
+
+    .info-value {
+        color: #0b1f3a;
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .client-badge {
+        background: #f5ead0;
+        color: #9b741c;
+        padding: 8px 16px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+
+/* ==========================
+   resources/views/vendas/create.blade.php
+========================== */
+
+.page-title {
+        color: #0b1f3a;
+        font-weight: 800;
+    }
+
+    .gold-line {
+        width: 55px;
+        height: 3px;
+        background: #c9a227;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .form-card {
+        background: white;
+        border-radius: 22px;
+        border: 1px solid #eef0f3;
+        box-shadow: 0 12px 35px rgba(0,0,0,.07);
+        overflow: hidden;
+    }
+
+    .form-header {
+        padding: 30px;
+        border-bottom: 1px solid #eef0f3;
+    }
+
+    .form-body {
+        padding: 30px;
+    }
+
+    .sale-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: rgba(201,162,39,.12);
+        color: #c9a227;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 34px;
+        margin: auto;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #0b1f3a;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 12px;
+        border: 1px solid #dbe2ea;
+        padding: 12px 14px;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #c9a227;
+        box-shadow: 0 0 0 .15rem rgba(201,162,39,.20);
+    }
+
+    .info-box {
+        background: #fafbfd;
+        border: 1px solid #eef0f3;
+        border-radius: 16px;
+        padding: 18px;
+        margin-bottom: 25px;
+    }
+
+    .info-box i {
+        color: #c9a227;
+        font-size: 22px;
+    }
+
+
+/* ==========================
+   resources/views/vendas/edit.blade.php
+========================== */
+
+.page-title {
+        color: #0b1f3a;
+        font-weight: 800;
+    }
+
+    .gold-line {
+        width: 55px;
+        height: 3px;
+        background: #c9a227;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .form-card {
+        background: white;
+        border-radius: 22px;
+        border: 1px solid #eef0f3;
+        box-shadow: 0 12px 35px rgba(0,0,0,.07);
+        overflow: hidden;
+    }
+
+    .form-header {
+        padding: 30px;
+        border-bottom: 1px solid #eef0f3;
+    }
+
+    .form-body {
+        padding: 30px;
+    }
+
+    .sale-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: rgba(201,162,39,.12);
+        color: #c9a227;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 34px;
+        margin: auto;
+    }
+
+    .sale-id {
+        display: inline-block;
+        margin-top: 10px;
+        background: #f5ead0;
+        color: #9b741c;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #0b1f3a;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 12px;
+        border: 1px solid #dbe2ea;
+        padding: 12px 14px;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #c9a227;
+        box-shadow: 0 0 0 .15rem rgba(201,162,39,.20);
+    }
+
+    .info-box {
+        background: #fafbfd;
+        border: 1px solid #eef0f3;
+        border-radius: 16px;
+        padding: 18px;
+        margin-bottom: 25px;
+    }
+
+    .info-box i {
+        color: #c9a227;
+        font-size: 22px;
+    }
+
+
+/* ==========================
+   resources/views/vendas/index.blade.php
+========================== */
+
+.page-title {
+            color: #0b1f3a;
+            font-weight: 800;
+        }
+
+        .gold-line {
+            width: 55px;
+            height: 3px;
+            background: #c9a227;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .sales-card {
+            background: white;
+            border-radius: 22px;
+            border: 1px solid #eef0f3;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .07);
+            overflow: hidden;
+        }
+
+        .sales-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: rgba(201, 162, 39, .13);
+            color: #c9a227;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 12px;
+            border: 1px solid #dbe2ea;
+            padding: 12px 14px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #c9a227;
+            box-shadow: 0 0 0 .15rem rgba(201, 162, 39, .20);
+        }
+
+        .table-premium {
+            margin-bottom: 0;
+        }
+
+        .table-premium thead th {
+            background: #f8fafc;
+            color: #6b7280;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: .4px;
+            border-bottom: 1px solid #eef0f3;
+            padding: 16px;
+        }
+
+        .table-premium tbody td {
+            padding: 18px 16px;
+            vertical-align: middle;
+            border-bottom: 1px solid #f1f3f5;
+        }
+
+        .table-premium tbody tr:hover {
+            background: #fbfcfd;
+        }
+
+        .sale-badge {
+            background: #f5ead0;
+            color: #9b741c;
+            padding: 7px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .action-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border: 1px solid #e5e7eb;
+            background: white;
+            transition: .2s;
+        }
+
+        .action-btn.view {
+            color: #0b1f3a;
+        }
+
+        .action-btn.edit {
+            color: #c9a227;
+        }
+
+        .action-btn.delete {
+            color: #dc3545;
+        }
+
+        .action-btn:hover {
+            background: #f8fafc;
+            transform: translateY(-1px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-state i {
+            font-size: 44px;
+            color: #c9a227;
+        }
+
+
+/* ==========================
+   resources/views/vendas/show.blade.php
+========================== */
+
+.page-title {
+        color: #0b1f3a;
+        font-weight: 800;
+    }
+
+    .gold-line {
+        width: 55px;
+        height: 3px;
+        background: #c9a227;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .sale-card {
+        background: white;
+        border-radius: 24px;
+        border: 1px solid #eef0f3;
+        box-shadow: 0 15px 40px rgba(0,0,0,.08);
+        overflow: hidden;
+    }
+
+    .sale-header {
+        background: linear-gradient(135deg, #0b1f3a, #163b63);
+        color: white;
+        padding: 35px;
+    }
+
+    .sale-header h2 {
+        margin: 0;
+        font-weight: 800;
+    }
+
+    .sale-number {
+        display: inline-block;
+        margin-top: 10px;
+        background: rgba(255,255,255,.15);
+        padding: 8px 16px;
+        border-radius: 999px;
+    }
+
+    .value-box {
+        background: white;
+        border-radius: 20px;
+        padding: 25px;
+        text-align: center;
+        box-shadow: 0 12px 25px rgba(0,0,0,.08);
+        margin-top: -40px;
+    }
+
+    .value-box h1 {
+        color: #c9a227;
+        font-weight: 800;
+        margin: 0;
+    }
+
+    .info-card {
+        background: #fafbfd;
+        border: 1px solid #eef0f3;
+        border-radius: 16px;
+        padding: 20px;
+        height: 100%;
+    }
+
+    .info-label {
+        color: #6b7280;
+        font-size: 13px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+    }
+
+    .info-value {
+        color: #0b1f3a;
+        font-weight: 700;
+        font-size: 17px;
+    }
+
+    .obs-card {
+        background: #fafbfd;
+        border: 1px solid #eef0f3;
+        border-radius: 16px;
+        padding: 20px;
+    }
+
+
+/* ==========================
+   Responsividade das páginas
+========================== */
+
+@media (max-width: 992px) {
+    .table-premium thead th,
+    .table-premium tbody td {
+        padding: 14px 12px;
+        white-space: nowrap;
+    }
+
+    .property-image {
+        height: 320px;
+    }
+
+    .chart-box {
+        height: 240px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-title,
+    .dash-title {
+        font-size: 24px;
+    }
+
+    .gold-line {
+        margin-bottom: 4px;
+    }
+
+    .client-card,
+    .property-card,
+    .filter-card,
+    .sales-card,
+    .dash-card,
+    .form-card {
+        border-radius: 18px;
+    }
+
+    .filter-card,
+    .client-card.p-4,
+    .property-card.p-4,
+    .sales-card.p-4,
+    .dash-card.p-4,
+    .form-card.p-4 {
+        padding: 18px !important;
+    }
+
+    .property-body {
+        padding: 22px;
+    }
+
+    .property-image {
+        height: 260px;
+    }
+
+    .price-box {
+        margin-top: 20px;
+    }
+
+    .table-premium {
+        min-width: 760px;
+    }
+
+    .vendas-table {
+        min-width: 620px;
+    }
+}
+
+@media (max-width: 576px) {
+    .page-title,
+    .dash-title {
+        font-size: 22px;
+    }
+
+    .stat-icon {
+        font-size: 34px;
+    }
+
+    .client-avatar,
+    .sales-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .property-thumb {
+        width: 76px;
+        height: 60px;
+    }
+
+    .apartment-img {
+        width: 70px;
+        height: 54px;
+    }
+
+    .property-image {
+        height: 220px;
+    }
+
+    .empty-state {
+        padding: 42px 16px;
+    }
+}
