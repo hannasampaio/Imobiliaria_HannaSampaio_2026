@@ -1,59 +1,199 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="public/images/logo.png" width="230">
 </p>
 
-## About Laravel
+<h1 align="center">🏢 Hanna Imobiliária</h1>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+Sistema de Gestão Imobiliária desenvolvido em <strong>Laravel 12</strong>, permitindo gerir clientes, apartamentos e vendas através de uma interface moderna, intuitiva e responsiva.
+</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<p align="center">
+<img src="https://img.shields.io/badge/Laravel-12-red?style=for-the-badge&logo=laravel">
+<img src="https://img.shields.io/badge/PHP-8.2-blue?style=for-the-badge&logo=php">
+<img src="https://img.shields.io/badge/MySQL-Database-orange?style=for-the-badge&logo=mysql">
+<img src="https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge&logo=bootstrap">
+<img src="https://img.shields.io/badge/Responsive-✔-green?style=for-the-badge">
+</p>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 📑 Índice
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- [Funcionalidades](#-funcionalidades)
+- [Tecnologias](#-tecnologias)
+- [Perfis de Utilizador](#-perfis-de-utilizador)
+- [Requisitos](#-requisitos)
+- [Instalação](#-instalação)
+- [Contas de Demonstração](#-contas-de-demonstração)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Relatórios](#-relatórios)
+- [Fotografias](#-fotografias)
+- [Contexto Académico](#-contexto-académico)
+- [Licença](#-licença)
+- [Autora](#-autora)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## ✨ Funcionalidades
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+**Autenticação**
+- Login, registo e recuperação de palavra-passe
 
-### Premium Partners
+**Gestão de Clientes**
+- Criar, editar, consultar e eliminar
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+**Gestão de Apartamentos**
+- Upload de fotografias, pesquisa, ordenação e paginação
 
-## Contributing
+**Gestão de Vendas**
+- Associação Cliente ↔ Apartamento
+- Impede a venda de um apartamento já vendido
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Dashboard**
+- Total de clientes, apartamentos e vendas
+- Faturação e estatísticas (Chart.js)
 
-## Code of Conduct
+**Relatórios PDF**
+- Clientes, apartamentos e vendas (DomPDF)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 🛠 Tecnologias
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Laravel 12
+- PHP 8.2
+- MySQL
+- Blade
+- Bootstrap 5
+- JavaScript
+- DomPDF
+- Vite
+- Git / GitHub
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 👥 Perfis de Utilizador
+
+### Administrador
+✔ Gestão completa (clientes, apartamentos, vendas, eliminação de dados)
+
+### Vendedor
+✔ Gestão de clientes
+✔ Gestão de apartamentos
+✔ Gestão de vendas
+❌ Não pode eliminar dados
+
+---
+
+## 📋 Requisitos
+
+Antes de instalar, garanta que tem:
+
+- PHP >= 8.2
+- Composer
+- Node.js >= 18 e npm
+- MySQL
+- Extensão PHP `pdo_mysql` ativa
+
+---
+
+## 🚀 Instalação
+
+```bash
+composer install
+npm install
+copy .env.example .env
+php artisan key:generate
+```
+
+Configure as credenciais da base de dados no ficheiro `.env` (`DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`) antes de continuar.
+
+```bash
+php artisan migrate:fresh --seed
+php artisan storage:link
+php artisan serve
+```
+
+---
+
+## 🔐 Contas de Demonstração
+
+> ⚠️ **Nota:** estas contas existem apenas para fins de demonstração e avaliação do projeto. Não devem ser usadas em ambiente de produção.
+
+**Administrador**
+- Email: `hannasampaio@imobiliariahanna.com`
+- Password: `123456789`
+
+**Vendedor**
+- Email: `vendedor@imobiliariahanna.com`
+- Password: `987654321`
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+app/
+  Http/Controllers/   → Lógica de negócio (Clientes, Apartamentos, Vendas)
+  Models/              → Modelos Eloquent
+database/
+  migrations/          → Esquema da base de dados
+  seeders/             → Dados iniciais (apartamentos, clientes, vendas, utilizadores)
+public/
+  images/              → Logótipo e assets estáticos
+resources/
+  views/               → Templates Blade
+  css/, js/            → CSS e JS modulares (layout, dashboard, autenticação)
+routes/
+  web.php              → Definição de rotas
+storage/
+  app/public/          → Fotografias dos apartamentos
+```
+
+---
+
+## 📄 Relatórios
+
+O sistema permite gerar relatórios em PDF de:
+
+- Clientes
+- Apartamentos
+- Vendas
+
+---
+
+## 📷 Fotografias
+
+As fotografias dos apartamentos encontram-se em:
+
+```
+storage/app/public/apartamentos
+```
+
+Após a instalação, execute sempre:
+
+```bash
+php artisan storage:link
+```
+
+---
+
+## 🎓 Contexto Académico
+
+Projeto desenvolvido no âmbito do curso de **Software Developer** da **CESAE Digital**.
+
+---
+
+## 📜 Licença
+
+Projeto desenvolvido para fins académicos. Uso livre para estudo e referência.
+
+---
+
+## 👩‍💻 Autora
+
+**Hanna Sampaio**
+Software Developer
+CESAE Digital - Portugal
+2026
